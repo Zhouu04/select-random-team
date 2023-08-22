@@ -1,0 +1,24 @@
+<table class="table mt-5 ">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Rank</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let team of listTeam; let i = index">
+        <th scope="row">{{team.id}}</th>
+        <td>{{team.name}}</td>
+        <td>{{team.star}}</td>
+        <td >
+            <button style="margin-right: 10px;" class="btn btn-primary" (click)="editTeam(i)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteTeam(i)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<button class="mt-5" (click)="addTeam()">Add tetam</button>
+<button class="mt-5 btn btn-primary" (click)="saveDataToLocal()">Save</button>
+  

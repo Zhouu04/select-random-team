@@ -1,0 +1,58 @@
+<div class="content">
+  <div class="content__selectLeague">
+    <label for="lang-select">Chọn giải đấu</label>
+    <select name="lang" id="lang-select" [(ngModel)]="selectLeague">
+      <option value="" selected disabled hidden>--Chọn giải đấu--</option>
+      <option value="Premier League">Premier League</option>
+      <option value="Bundesliga">Bundesliga</option>
+      <option value="La Liga">La Liga</option>
+      <option value="Serie A">Serie A</option>
+      <option value="Ligue 1">Ligue 1</option>
+    </select>
+  </div>
+  <div class="content__selectRank">
+    <label for="lang-select">Chọn chỉ số đội bóng</label>
+    <select name="lang" id="lang-select" [(ngModel)]="selectRank">
+      <option value="" selected disabled hidden>--Chọn chỉ số--</option>
+      <option value="5">5 sao</option>
+      <option value="4">4 sao</option>
+    </select>
+  </div>
+  <button (click)="randomTeam(1); playSound()">Random</button>
+  <button style="margin-left: 10px" (click)="randomTeam(2);playSound()">
+    Random two team
+  </button>
+</div>
+
+<div class="select-team" *ngIf="selectTeams.length == 1">
+  <div class="teamContent">
+    <h2>Randomly selected team :</h2>
+    <h3>Name: {{ selectTeams[0].name }}</h3>
+    <h3>Rank: {{ selectTeams[0].star }}</h3>
+    <h3>League: {{ selectTeams[0].nameLeague }}</h3>
+  </div>
+  <div class="teamLogo">
+    <img [src]="selectTeams[0]?.logo" alt="" />
+  </div>
+</div>
+<div class="listLogo" >
+  <div class="" >
+    <img [src]="logo" alt="" />
+  </div>
+  <div class="" >
+    <img [src]="logo1" alt="" />
+  </div>
+</div>
+<div class="select-team" *ngIf="selectTeams.length == 2">
+  <div class="teamContent">
+    <div class="selected-teams">
+      <div class="team" *ngFor="let team of selectTeams">
+        <img class="blink-logo" src="{{ team.logo }}" alt="" />
+        <h2>{{ team.name }}</h2>
+        <h3>Rank: {{ team.star }}</h3>
+        <h2 class="vs">VS</h2>
+      </div>
+    </div>
+  </div>
+</div>
+

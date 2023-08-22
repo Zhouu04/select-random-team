@@ -1,0 +1,29 @@
+/* CSS cho thanh điều hướng */
+.nav {
+    display: flex;
+    background-color: #3f51b5;
+    padding: 16px 0;    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+  
+  .nav button {
+    border: none;
+    background-color: transparent;
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 16px 20px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .nav a:hover {
+    background-color: #12269c;
+    color: #fff;
+  }
+  

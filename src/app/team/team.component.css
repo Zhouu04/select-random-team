@@ -1,0 +1,151 @@
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 100px;
+  margin-top: 64px;
+}
+
+.content__selectLeague,
+.content__selectRank {
+  margin-right: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+select {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+.select-team {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -50px;
+  padding: 20px;
+}
+
+.teamContent {
+  flex: 1;
+}
+
+.teamContent h2 {
+  margin-bottom: 10px;
+}
+
+.teamLogo {
+  flex: 1;
+  text-align: center;
+}
+
+.teamLogo img {
+  max-width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+}
+
+.selected-teams {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap; /* Prevent wrapping to the next line */
+  position: relative;
+}
+
+.team {
+  padding: 10px;
+  text-align: center;
+  flex: 1; /* Distribute available space equally between both teams */
+  margin: 0 5px; /* Add a small margin between teams */
+}
+
+.team img {
+  max-width: 100%;
+  max-height: 150px;
+  object-fit: contain; /* Đảm bảo hình ảnh không bị biến dạng */
+}
+
+.vs {
+  position: absolute;
+  font-size: 50px;
+  margin-right: 10px;
+  bottom: 50%;
+  right: 50%;
+  left: 50%;
+  top: 50%;
+}
+
+.team-logo img{
+  width: 100px; /* Điều chỉnh kích thước logo */
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Responsive layout adjustments */
+@media (max-width: 768px) {
+  .content {
+      flex-direction: column;
+  }
+
+  .content__selectLeague,
+  .content__selectRank {
+      margin-right: 0;
+      margin-bottom: 10px;
+  }
+
+  select {
+      width: 100%;
+  }
+
+  button {
+      width: 100%;
+      margin-left: 0;
+  }
+
+  .select-team {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .teamContent,
+  .teamLogo {
+      flex: none;
+      width: 100%;
+      text-align: center;
+  }
+}
+
+.listLogo img {
+  max-width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+}
+
+.listLogo {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
