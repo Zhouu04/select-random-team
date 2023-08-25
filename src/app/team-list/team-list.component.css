@@ -2,4 +2,49 @@ table {
     margin-top: 7rem !important;
 }
 
+.btn-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.notify-alert {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+}
+
+.notify-alert {
+    border-radius: 2px;
+    border-left: 4px solid;
+    min-width: 400px;
+    max-width: 450px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.09);
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 16px;
+    transition: all ease-in-out 0.4s;
+    animation: slideNoti ease 0.5s, hide linear 5s forwards;
+        
+}
+
+
+@keyframes slideNoti {
+    from {
+        opacity: 0;
+        transform: translateX(calc(100% + 20px)); 
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes hide {
+    to {
+        opacity: 0;
+    }
+}
+
 

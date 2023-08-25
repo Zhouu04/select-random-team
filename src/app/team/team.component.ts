@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Team, listTeam } from '../share/listTeam';
-import { LoginPayload } from '../../../../jira-clone-angular/src/app/project/auth/loginPayload';
-import { animation } from '@angular/animations';
 
 export interface OPtion {
   selectLeague?: string;
@@ -13,8 +11,9 @@ export interface OPtion {
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.css']
 })
-export class TeamComponent {
-  listTeam = listTeam
+export class TeamComponent implements OnInit {
+  teamData = listTeam
+  listTeam: any[] = []
   selectTeam: Team;
   selectTeams: Team[] = [];
   logo: string;
@@ -37,6 +36,14 @@ export class TeamComponent {
     this.audio = new Audio('./assets/audio/xo-so-mien-bac.mp3')
   }
 
+  ngOnInit(): void {
+    localStorage.setItem('teamData', JSON.stringify(this.teamData));
+    const teamData = localStorage.getItem('teamData');
+    if (teamData) {
+      this.listTeam = JSON.parse(teamData);
+    }
+  }
+
   resetOption() {
     Object.assign(this.selectOption, this.selectOptionDefault);
   }
@@ -50,11 +57,7 @@ export class TeamComponent {
     this.audio.play();
   }
 
-  
-
   randomTeam(numberTeam: number) {
-   
-
     this.selectTeams = [];
     const copiedList = [...this.listTeam];
     // Select two random teams
@@ -114,8 +117,6 @@ export class TeamComponent {
           this.audio.pause()
         }, 25000)
       }
-
-
     }
   }
 }

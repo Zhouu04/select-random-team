@@ -1,17 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { listTeam } from '../share/listTeam';
 @Component({
   selector: 'app-team-list',
   templateUrl: './team-list.component.html',
   styleUrls: ['./team-list.component.css']
 })
-export class TeamListComponent {
-  listTeam = listTeam
+export class TeamListComponent implements OnInit {
+  listTeam = [];
+  showSuccess: boolean;
   constructor() {
-    const savedData = localStorage.getItem('myArray');
-    if (savedData)
-      this.listTeam = JSON.parse(savedData);
+    this.showSuccess = false;
   }
+
+  ngOnInit(): void {
+    const teamData = localStorage.getItem('teamData');
+    if (teamData) {
+      this.listTeam = JSON.parse(teamData);
+    }
+  }
+
   editTeam(index: number) {
     const editedTeam = this.listTeam[index];
     const updatedName = prompt('Edit team name:', editedTeam.name);
@@ -42,7 +49,14 @@ export class TeamListComponent {
   }
 
   saveDataToLocal() {
-    const jsonArray = JSON.stringify(this.listTeam);
-    localStorage.setItem('myArray', jsonArray);
+    localStorage.setItem('teamData', JSON.stringify(this.listTeam));
   }
+
+  showNotify() :void {
+    this.showSuccess = true
+    setTimeout(() => {
+      this.showSuccess = false
+    }, 5000)
+  }
+  
 }
