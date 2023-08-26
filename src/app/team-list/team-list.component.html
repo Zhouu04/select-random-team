@@ -10,13 +10,23 @@
   <tbody>
     <tr *ngFor="let team of listTeam; let i = index">
       <th scope="row">{{ i + 1 }}</th>
-      <td>{{ team.name }}</td>
+      <td>
+        <img
+          *ngIf="team.logo"
+          style="width: 60px; height: 50px; object-fit: contain"
+          src="{{ team?.logo }}"
+          alt=""
+        />
+        {{ team.name }}
+      </td>
       <td>{{ team.star }}</td>
       <td>
         <button
           style="margin-right: 10px"
           class="btn btn-primary"
-          (click)="editTeam(i)"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          (click)="update(); editTeam(i)"
         >
           Edit
         </button>
@@ -30,11 +40,79 @@
   <p>You have successfully saved the list team</p>
 </div>
 <div class="btn-list">
-  <button style="margin-left: 20px;" class="mt-5 btn btn-secondary" (click)="addTeam()">Add team</button>
-  <button style="margin-right: 40px;"
+  <button
+    style="margin-left: 20px"
+    class="mt-5 btn btn-secondary"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    (click)="add()"
+  >
+    Add team
+  </button>
+  <button
+    style="margin-right: 40px"
     class="mt-5 btn btn-primary"
     (click)="saveDataToLocal(); showNotify()"
   >
     Save
   </button>
+</div>
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Team manager</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="manageForm">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Team Name</label>
+            <input
+              type="name"
+              class="form-control"
+              id="exampleInputEmail1"
+              placeholder="Enter team name..."
+              formControlName = "teamname"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Team Rank</label>
+            <input
+              type="number"
+              class="form-control"
+              id="exampleInputEmail1"
+              placeholder="Enter team rank..."
+              formControlName = "teamrank"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button *ngIf="showUpdate"   type="button" class="btn btn-success">Update</button>
+        <button *ngIf="showAdd" (click)="addTeam()" type="button" class="btn btn-success">Add</button>
+      </div>
+    </div>
+  </div>
 </div>
