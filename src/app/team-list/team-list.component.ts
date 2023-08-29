@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Team } from '../share/listTeam';
+import { NoWhitespaceValidator } from '../validator/no-whitespace.validator';
 @Component({
   selector: 'app-team-list',
   templateUrl: './team-list.component.html',
@@ -11,7 +13,9 @@ export class TeamListComponent implements OnInit {
   showUpdate: boolean;
   showAdd: boolean;
   manageForm: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  teamBeingEdited: Team;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     const teamData = localStorage.getItem('teamData');
@@ -20,29 +24,72 @@ export class TeamListComponent implements OnInit {
     }
 
     this.manageForm = this.fb.group({
-      teamname: '',
-      teamrank: '',
+      teamname: ['', Validators.compose([
+        Validators.required,
+        NoWhitespaceValidator(),
+      ])],
+      teamrank: ['', Validators.compose([
+        Validators.required,
+      ])],
+      nameleague: ['', Validators.compose([
+        Validators.required,
+        NoWhitespaceValidator(),
+      ])]
     })
   }
 
-  addTeam() {
-    console.log(this.manageForm.value.teamname)
+  get teamname() {
+    return this.manageForm.get('teamname')
+  }
 
+  get teamrank() {
+    return this.manageForm.get('teamrank')
+  }
+
+  get nameleague() {
+    return this.manageForm.get('nameleague')
+  }
+
+  addTeam() {
     const newTeam = { id: 0, name: '', nameLeague: '', star: 0, logo: '' }
     const teamName = this.manageForm.value.teamname
     const teamStar = this.manageForm.value.teamrank
-    if (teamName) {
-      newTeam.name = teamName
-      if (teamStar) {
-        newTeam.star = Number(teamStar)
-      }
-    }
-    this.listTeam.push(newTeam)
+    const nameLeague = this.manageForm.value.nameleague
+
+    newTeam.name = teamName
+    newTeam.star = teamStar
+    newTeam.nameLeague = nameLeague
+
+    this.listTeam.push(newTeam);
+    this.manageForm.reset();
+    this.saveDataToLocal();
+  }
+
+  edit(team: any) {
+    this.showUpdate = true;
+    this.showAdd = false;
+    this.teamBeingEdited = team;
+    this.manageForm.controls['teamname'].setValue(team.name)
+    this.manageForm.controls['teamrank'].setValue(team.star)
+    this.manageForm.controls['nameleague'].setValue(team.nameLeague)
   }
 
   update() {
-    this.showUpdate = true;
-    this.showAdd = false;
+    const updatedTeam = {
+      id: this.teamBeingEdited.id, // Sử dụng biến đã gán
+      name: this.manageForm.value.teamname,
+      nameLeague: this.teamBeingEdited.nameLeague,
+      star: this.manageForm.value.teamrank,
+      logo: this.teamBeingEdited.logo,
+    };
+
+    const updatedIndex = this.listTeam.findIndex(team => team.id === updatedTeam.id);
+
+    if (updatedIndex !== -1) {
+      this.listTeam[updatedIndex] = updatedTeam;
+      this.manageForm.reset();
+    }
+    this.saveDataToLocal();
   }
 
   add() {
@@ -50,44 +97,22 @@ export class TeamListComponent implements OnInit {
     this.showAdd = true;
   }
 
-  editTeam(index: number) {
-    const editedTeam = this.listTeam[index];
-    const updatedName = this.manageForm.value.teamname
-    const updatedRank = this.manageForm.value.teamrank;
-
-    if (updatedName !== null && updatedRank !== null) {
-      editedTeam.name = updatedName;
-      editedTeam.star = updatedRank;
-    }
-  }
-  
-
-  editTeam1(index: number) {
-    const editedTeam = this.listTeam[index];
-    const updatedName = prompt('Edit team name:', editedTeam.name);
-    const updatedRank = prompt('Edit team rank:', String(editedTeam.star));
-
-    if (updatedName !== null && updatedRank !== null) {
-      editedTeam.name = updatedName;
-      editedTeam.star = parseInt(updatedRank);
-    }
-  }
-
   deleteTeam(index: number) {
     if (confirm('Are you sure you want to delete this team?')) {
       this.listTeam.splice(index, 1);
     }
+    this.saveDataToLocal()
   }
 
   saveDataToLocal() {
     localStorage.setItem('teamData', JSON.stringify(this.listTeam));
   }
 
-  showNotify() :void {
+  showNotify(): void {
     this.showSuccess = true
     setTimeout(() => {
       this.showSuccess = false
     }, 5000)
   }
-  
+
 }

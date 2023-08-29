@@ -15,11 +15,12 @@
     <select name="lang" id="lang-select" [(ngModel)]="selectRank">
       <option value="" selected disabled hidden>--Chọn chỉ số--</option>
       <option value="5">5 sao</option>
+      <option value="4.5">4.5 sao</option>
       <option value="4">4 sao</option>
     </select>
   </div>
-  <button (click)="randomTeam(1); playSound()">Random</button>
-  <button style="margin-left: 10px" (click)="randomTeam(2);playSound()">
+  <button (click)="randomTeam(1); ">Random</button>
+  <button style="margin-left: 10px" (click)="randomTeam(2); ">
     Random two team
   </button>
 </div>
@@ -35,11 +36,11 @@
     <img [src]="selectTeams[0]?.logo" alt="" />
   </div>
 </div>
-<div class="listLogo" >
-  <div class="" >
+<div class="listLogo">
+  <div class="">
     <img [src]="logo" alt="" />
   </div>
-  <div class="" >
+  <div class="">
     <img [src]="logo1" alt="" />
   </div>
 </div>
@@ -47,7 +48,7 @@
   <div class="teamContent">
     <div class="selected-teams">
       <div class="team" *ngFor="let team of selectTeams">
-        <img class="blink-logo" src="{{ team.logo }}" alt="" />
+        <img src="{{ team.logo }}" alt="" />
         <h2>{{ team.name }}</h2>
         <h3>Rank: {{ team.star }}</h3>
         <h2 class="vs">VS</h2>
@@ -56,3 +57,13 @@
   </div>
 </div>
 
+<div class="listteam">
+  <ul class="listteam__player" >
+    <li class="teamplayer__item" *ngFor="let team of listPlayerData; let i = index">
+        <h6>Player  {{i + 1}}</h6>
+        <h6>Name: {{ team.name }}</h6>
+        <h6>Rank: {{ team.star }}</h6>
+    </li>
+  </ul>
+</div>
+<button (click)="saveListPlayer()" >Save</button>

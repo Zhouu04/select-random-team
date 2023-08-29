@@ -1,43 +1,48 @@
-<table class="table mt-5">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Rank</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let team of listTeam; let i = index">
-      <th scope="row">{{ i + 1 }}</th>
-      <td>
-        <img
-          *ngIf="team.logo"
-          style="width: 60px; height: 50px; object-fit: contain"
-          src="{{ team?.logo }}"
-          alt=""
-        />
-        {{ team.name }}
-      </td>
-      <td>{{ team.star }}</td>
-      <td>
-        <button
-          style="margin-right: 10px"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          (click)="update(); editTeam(i)"
-        >
-          Edit
-        </button>
-        <button class="btn btn-danger" (click)="deleteTeam(i)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="container-fluid">
+  <div class="row ">
+    <div class="col-12">
+      <table class="table mt-5">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Rank</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let team of listTeam; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              <img
+                *ngIf="team.logo"
+                style="width: 60px; height: 50px; object-fit: contain"
+                src="{{ team?.logo }}"
+                alt=""
+              />
+              {{ team.name }}
+            </td>
+            <td>{{ team.star }}</td>
+            <td>
+              <button
+                style="margin-right: 10px"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                (click)="edit(team)"
+              >
+                Edit
+              </button>
+              <button class="btn btn-danger" (click)="deleteTeam(i)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 <div class="alert alert-success notify-alert" *ngIf="showSuccess" role="alert">
   <h4 class="alert-heading">Success!!!</h4>
-  <p>You have successfully saved the list team</p>
 </div>
 <div class="btn-list">
   <button
@@ -49,18 +54,9 @@
   >
     Add team
   </button>
-  <button
-    style="margin-right: 40px"
-    class="mt-5 btn btn-primary"
-    (click)="saveDataToLocal(); showNotify()"
-  >
-    Save
-  </button>
+  
 </div>
 
-<!-- Button trigger modal -->
-
-<!-- Modal -->
 <div
   class="modal fade"
   id="exampleModal"
@@ -76,14 +72,15 @@
         <button
           type="button"
           class="close"
-          data-dismiss="modal"
+          data-bs-dismiss="modal"
           aria-label="Close"
+          (click)="manageForm.reset()"
         >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="manageForm">
+        <form class="manageForm" [formGroup]="manageForm">
           <div class="form-group">
             <label for="exampleInputEmail1">Team Name</label>
             <input
@@ -93,6 +90,18 @@
               placeholder="Enter team name..."
               formControlName = "teamname"
             />
+            <span style="color:red" *ngIf="teamname && teamname.invalid && teamname.touched">Team Name is required</span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Name League</label>
+            <input
+              type="name"
+              class="form-control"
+              id="exampleInputEmail1"
+              placeholder="Enter team name..."
+              formControlName = "nameleague"
+            />
+            <span style="color:red" *ngIf="nameleague && nameleague.invalid && nameleague.touched">Name League is required</span>
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Team Rank</label>
@@ -103,15 +112,16 @@
               placeholder="Enter team rank..."
               formControlName = "teamrank"
             />
+            <span style="color:red" *ngIf="teamrank && teamrank.invalid && teamrank.touched">Team Rank is required</span>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        <button type="button" (click)="manageForm.reset()" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button *ngIf="showUpdate"   type="button" class="btn btn-success">Update</button>
-        <button *ngIf="showAdd" (click)="addTeam()" type="button" class="btn btn-success">Add</button>
+        <button *ngIf="showUpdate"  (click)="update(); showNotify()"  type="button" data-bs-dismiss="modal" class="btn btn-success">Update</button>
+        <button *ngIf="showAdd" [disabled]="manageForm.invalid"  (click)="addTeam()" type="button" data-bs-dismiss="modal" class="btn btn-success">Add</button>
       </div>
     </div>
   </div>

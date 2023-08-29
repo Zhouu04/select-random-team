@@ -12,40 +12,34 @@ export interface OPtion {
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
-  teamData = listTeam
-  listTeam: any[] = []
+  teamData = listTeam;
+  listTeam: any[] = [];
   selectTeam: Team;
   selectTeams: Team[] = [];
   logo: string;
   logo1: string;
-  
+  listTeamPlayer: Team[] = [];
+  listPlayerData: Team[];
+
 
   private audio: HTMLAudioElement;
 
   selectLeague: string | null
   selectRank: number | null
 
-  selectOption: OPtion;
-  selectOptionDefault: OPtion = {
-    selectLeague: "",
-    selectRank: 4.5
-  };
-  
   constructor() {
-    this.selectOption = this.selectOptionDefault;
     this.audio = new Audio('./assets/audio/xo-so-mien-bac.mp3')
   }
 
   ngOnInit(): void {
-    localStorage.setItem('teamData', JSON.stringify(this.teamData));
-    const teamData = localStorage.getItem('teamData');
-    if (teamData) {
-      this.listTeam = JSON.parse(teamData);
-    }
-  }
 
-  resetOption() {
-    Object.assign(this.selectOption, this.selectOptionDefault);
+    // localStorage.setItem('teamData', JSON.stringify(this.teamData));
+    //  localStorage.setItem('playerData', JSON.stringify(this.listTeamPlayer));
+
+    const teamData = localStorage.getItem('teamData');
+    if (teamData)
+      this.listTeam = JSON.parse(teamData);
+
   }
 
   private filterTeamByCondition(league: string | null, rank: number | null): Team[] {
@@ -60,7 +54,7 @@ export class TeamComponent implements OnInit {
   randomTeam(numberTeam: number) {
     this.selectTeams = [];
     const copiedList = [...this.listTeam];
-    // Select two random teams
+
     for (let i = 0; i < numberTeam; i++) {
 
       let filterTeam = [];
@@ -81,8 +75,8 @@ export class TeamComponent implements OnInit {
       else {
         filterTeam = this.filterTeamByCondition(this.selectLeague, this.selectRank)
       }
-
-      if(numberTeam == 1) {
+      //Random 1 team
+      if (numberTeam == 1) {
         const interval = setInterval(() => {
           const randomIndex = Math.floor(Math.random() * filterTeam.length);
           this.logo1 = filterTeam[randomIndex].logo
@@ -93,17 +87,19 @@ export class TeamComponent implements OnInit {
           const randomIndex = Math.floor(Math.random() * filterTeam.length);
           const selectedTeam = filterTeam.splice(randomIndex, 1)[0];
           this.selectTeams.push(selectedTeam);
-        }, 25000)
+          this.listTeamPlayer.push(selectedTeam);
+        }, 5000)
         setTimeout(() => {
           this.audio.pause()
-        }, 25000)
+        }, 5000)
       }
-
-      else if(numberTeam == 2) {
+      //Random 2 team
+      else if (numberTeam == 2) {
         const interval = setInterval(() => {
-          const randomIndex = Math.floor(Math.random() * filterTeam.length);
-          this.logo = filterTeam[randomIndex].logo
-          this.logo1 = filterTeam[randomIndex + 1].logo
+          const randomIndex1 = Math.floor(Math.random() * filterTeam.length);
+          const randomIndex2 = Math.floor(Math.random() * filterTeam.length);
+          this.logo = filterTeam[randomIndex1].logo;
+          this.logo1 = filterTeam[randomIndex2].logo;
         }, 100)
         setTimeout(() => {
           clearInterval(interval)
@@ -112,11 +108,21 @@ export class TeamComponent implements OnInit {
           const randomIndex = Math.floor(Math.random() * filterTeam.length);
           const selectedTeam = filterTeam.splice(randomIndex, 1)[0];
           this.selectTeams.push(selectedTeam);
-        }, 25000)
+          this.listTeamPlayer.push(selectedTeam);
+
+        }, 5000)
         setTimeout(() => {
           this.audio.pause()
-        }, 25000)
+        }, 5000)
       }
     }
   }
+
+  saveListPlayer() {
+    localStorage.setItem('playerData', JSON.stringify(this.listTeamPlayer));
+    const listTeamPlayer = localStorage.getItem('playerData');
+    if (listTeamPlayer)
+      this.listPlayerData = JSON.parse(listTeamPlayer)
+  }
+
 }
