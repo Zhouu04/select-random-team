@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FootballClubs, Schedule } from '../dbs/db';
+// import { FootballClubs, Schedule } from '../dbs/db';
 import { FootballclubRepositoryService } from '../repository/footballclub-repository.service';
 import { TeamRepositoryService } from '../repository/team-repository.service';
 import { SeasonRepositoryService } from '../repository/season-repository.service';
@@ -26,7 +26,7 @@ export class ViewSeasonService {
 
       // 4. Gép dữ liệu Footballclub và Team vào lịch.
 
-      // 
+      //
       /*
       schedules.forEach(schecule: Schedule => {
           var team = _.find(teams, {code: schecule.team1.teamCode})

@@ -3,4 +3,24 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    max-width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #f6f7fb;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+
+.modal-backdrop {
+  position: relative!important;
+  width: 0!important;
+  height: 0!important;
 }

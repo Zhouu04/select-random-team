@@ -1,46 +1,40 @@
-<div class="container-fluid">
-  <div class="row ">
-    <div class="col-12">
-      <table class="table mt-5">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Rank</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let team of listTeam; let i = index">
-            <th scope="row">{{ i + 1 }}</th>
-            <td>
-              <img
-                *ngIf="team.logo"
-                style="width: 60px; height: 50px; object-fit: contain"
-                src="{{ team?.logo }}"
-                alt=""
-              />
-              {{ team.name }}
-            </td>
-            <td>{{ team.star }}</td>
-            <td>
-              <button
-                style="margin-right: 10px"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                (click)="edit(team)"
-              >
-                Edit
-              </button>
-              <button class="btn btn-danger" (click)="deleteTeam(i)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Rank</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let team of listTeam; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <img
+            *ngIf="team.logo"
+            style="width: 60px; height: 50px; object-fit: contain"
+            src="{{ team?.logo }}"
+            alt=""
+          />
+          {{ team.name }}
+        </td>
+        <td>{{ team.star }}</td>
+        <td>
+          <button
+            style="margin-right: 10px"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="edit(team)"
+          >
+            Edit
+          </button>
+          <button class="btn btn-danger" (click)="deleteTeam(i)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 <div class="alert alert-success notify-alert" *ngIf="showSuccess" role="alert">
   <h4 class="alert-heading">Success!!!</h4>
 </div>
@@ -54,7 +48,7 @@
   >
     Add team
   </button>
-  
+
 </div>
 
 <div
@@ -66,7 +60,7 @@
   aria-hidden="true"
 >
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div  class="modal-content" style="margin-top: 100px">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Team manager</h5>
         <button
@@ -92,7 +86,7 @@
             />
             <span style="color:red" *ngIf="teamname && teamname.invalid && teamname.touched">Team Name is required</span>
           </div>
-          <div class="form-group">
+          <div  class="form-group">
             <label for="exampleInputEmail1">Name League</label>
             <input
               type="name"
@@ -126,3 +120,4 @@
     </div>
   </div>
 </div>
+

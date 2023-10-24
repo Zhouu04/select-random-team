@@ -1,12 +1,26 @@
-<!-- <app-header></app-header>
-<app-slider></app-slider> -->
-<!-- <app-team-list></app-team-list> -->
-<div class="nav">
-    <button>
-        <a href="" routerLink="random-team">Home</a>
-    </button>
-    <button>
-        <a href="" routerLink="team-list">List Team</a>
-    </button>
+<!--<div class="row">
+  <div class="col-2">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="col-10">
+    <app-navbar></app-navbar>
+    <div style="margin-top: 100px"></div>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>-->
+
+<div class="container-fluid p-0">
+  <app-navbar1  (sideNavToggled)="sideNavStatus = $event"></app-navbar1>
+  <main >
+      <app-sidebar1 [sidenavStatus]="sideNavStatus" [ngClass]="{'app-side-nav-open': sideNavStatus}" ></app-sidebar1>
+      <div class="display-are p-3" [ngClass]="{'display-are-shrink': sideNavStatus}">
+        <router-outlet></router-outlet>
+      </div>
+  </main>
 </div>
-<router-outlet></router-outlet>
+
+
+
+

@@ -1,9 +1,9 @@
-export interface Team {
-    id?: number,
-    name?: string,
-    nameLeague?: string,
-    star?: number,
-    logo?: string
+export class Team {
+    id?: number = 0;
+    name?: string = '';
+    nameLeague?: string = '';
+    star?: number = 0;
+    logo?: string = '';
 }
 
 export const listTeam = [
@@ -14,7 +14,7 @@ export const listTeam = [
         nameLeague: "Premier League",
         star: 4,
         logo: './assets/logo/Arsenal-Logo.png'
-    }, 
+    },
     {
         id: 2,
         name: "Aston Villa",
@@ -158,7 +158,7 @@ export const listTeam = [
         star: 4,
         logo: './assets/logo/napoli.jpg'
     },
-   
+
     //Bundesliga
     {
         id: 22,
@@ -231,6 +231,6 @@ export const listTeam = [
         star: 4,
         logo: './assets/logo/nice.jpg'
     }
-    
+
 ]
 

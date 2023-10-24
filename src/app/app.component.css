@@ -1,29 +1,54 @@
-/* CSS cho thanh điều hướng */
-.nav {
-    display: flex;
-    background-color: #3f51b5;
-    padding: 16px 0;    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
+
+app-navbar1 {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 4rem;
+  z-index: 2;
 }
-  
-  .nav button {
-    border: none;
-    background-color: transparent;
+
+main {
+  position: absolute;
+  width: 100%;
+  top: 4rem;
+  z-index: 1;
+}
+
+app-sidebar1 {
+  position: fixed;
+  width: 220px;
+  height: 100vh;
+  box-shadow: 0px 0px 10px  rgba(0, 0, 0, 0.5);
+  background-color: #343a40;
+  border-top: 1px solid white;
+  overflow-x: hidden;
+  white-space: nowrap;
+  transition: all 0.2s linear;
+}
+
+.display-are {
+  position: absolute;
+  left: 270px;
+  width: calc(100% - 270px);
+  transition: all 0.2s linear;
+}
+
+.display-are-shrink {
+  width: calc(100% - 50px);
+  left: 70px;
+}
+
+.app-side-nav-open {
+  width: 60px;
+}
+
+@media only screen and (max-width: 46.1875em) {
+  app-sidebar1 {
+    width: 60px;
   }
-  
-  .nav a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    padding: 16px 20px;
-    transition: background-color 0.3s, color 0.3s;
+
+  .display-are {
+    width: calc(100% - 50px);
+    left: 70px;
   }
-  
-  .nav a:hover {
-    background-color: #12269c;
-    color: #fff;
-  }
-  
+}
