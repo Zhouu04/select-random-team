@@ -1,0 +1,18 @@
+hr:not([size]) {
+  height: 1px;
+}
+
+hr {
+  margin: 1rem 0;
+  color: #cccccc;
+  background-color: currentColor;
+  border: 0;
+  opacity: .25;
+}
+
+
+li a:hover {
+  opacity: 0.8;
+}
+
+

@@ -1,0 +1,53 @@
+<button style="margin-top: 20px" class="btn btn-secondary" (click)="shuffleSchedule()">Sắp xếp lịch đấu ngẫu nhiên
+</button>
+<ul style="margin-bottom: 200px;list-style: none;padding-left: 0; padding-right: 0" class=" mt-5 text-center card ">
+    <li style="position: relative ;margin-bottom: 20px" *ngFor="let match of schedule; let i = index; ">
+        <div class="card-header">
+            <h2>Trận {{i + 1}}</h2>
+        </div>
+        <div style="text-align: right; margin-top: 10px" class="profile-logo dropdown mx-4">
+            <div class="btn setting-btn dropdown-toggle" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-gear" style="color: #7a7c7f;"></i>
+            </div>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item" (click)="selectTeamRef.randomTeam(2); selectTeam(match);">
+                    Random two team
+                </li>
+                <li class="dropdown-item" (click)="updateScore(match)" > Cập nhật tỉ số</li>
+<!--                <li class="dropdown-item" (click)="selectTeamRef.randomTeam(1); selectTeam(match)">Random one team</li>-->
+            </ul>
+        </div>
+        <app-select-team #selectTeamRef (teams)="receiveTeam($event)"></app-select-team>
+        <div *ngIf="matchTeam[match.team1.name + ' vs ' + match.team2.name]"
+             style="padding-bottom: 10px;display: flex;; justify-content: space-around" class="selectTeam">
+            <div style="display: flex; flex-direction: column;align-items: center" class="">
+                <img [src]="matchTeam[match.team1.name + ' vs ' + match.team2.name]?.team1?.logo" alt="">
+                <span>{{matchTeam[match.team1.name + ' vs ' + match.team2.name]?.team1.name}}</span>
+                <span>{{matchTeam[match.team1.name + ' vs ' + match.team2.name]?.team1.star}}
+                  <i class="fa-solid fa-star" style="color: #f9f10b;"></i>
+                </span>
+
+            </div>
+            <div style="display: flex; flex-direction: column;align-items: center " class="">
+                <img [src]="matchTeam[match.team1.name + ' vs ' + match.team2.name]?.team2?.logo" alt="">
+                <span>{{matchTeam[match.team1.name + ' vs ' + match.team2.name]?.team2.name}}</span>
+                <span>{{matchTeam[match.team1.name + ' vs ' + match.team2.name]?.team2.star}}
+                  <i class="fa-solid fa-star" style="color: #f9f10b;"></i>
+                </span>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 50px " class="card-body p-0">
+            <div class="team">
+                <strong> {{ match.team1.name }} </strong>
+            </div>
+            <div class="team">
+                <strong>{{ match.team2.name }}</strong>
+            </div>
+        </div>
+        <div class="update-score" >
+            <h1>{{ matchScores[match.team1.name + ' vs ' + match.team2.name]?.score1 }}
+                - {{ matchScores[match.team1.name + ' vs ' + match.team2.name]?.score2 }}</h1>
+        </div>
+    </li>
+</ul>
+

@@ -1,0 +1,43 @@
+<app-season></app-season>
+
+<h2 >Nhập tên người chơi:</h2>
+
+<!-- Form để thêm người chơi -->
+<form (submit)="addPlayer()">
+    <input name="namePlayer" type="text" id="newPlayerName" [(ngModel)]="newPlayerName" required>
+    <button class="btn btn-success" (click)="addPlayer(); savePlayer()" type="submit">Thêm</button>
+</form>
+
+<!-- Danh sách người chơi -->
+<div class="table-responsive">
+  <table class="table table-striped ">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th scope="">Name Player</th>
+      <th scope="">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let player of players; let i = index">
+      <th scope="row"><span>{{i + 1}}</span></th>
+      <td>
+        <div *ngIf="show; else hide" class="">{{player.name}}</div>
+        <ng-template #hide>
+          <input #edit  type="text" [(ngModel)]="player.name" (blur)="updatePlayer(player)">
+        </ng-template>
+
+      </td>
+      <td>
+        <div style="display: flex" class="">
+          <div  style="margin-left: 10px;cursor: pointer" (click)="deletePlayer(i)"><i class="fa-solid fa-trash" style="color: #e21212;"></i></div>
+          <div (click)="edit()" style="margin-left: 10px" class=""><i class="fa-solid fa-pen" style="color: #2c74f2;"></i></div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<button style="margin-bottom: 200px"  (click)="savePlayer()" class="btn btn-primary">Save</button>
+<button style="margin-bottom: 200px" class="btn btn-secondary" (click)="resetPlayer()">Reset</button>

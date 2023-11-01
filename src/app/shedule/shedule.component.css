@@ -1,0 +1,41 @@
+img {
+    height: 54px;
+    aspect-ratio: auto 54 / 54;
+    width: 54px;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+}
+
+span {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.update-score {
+  position: absolute;
+  left: 50%;
+  top: 68%;
+  transform: translate(-50%, -50%);
+}
+
+.setting-btn i:hover {
+  rotate: 180deg;
+  transition: all 0.2s linear;
+}
+
+@media only screen and (max-width: 46.1875em) {
+  .update-score h1 {
+    font-size: 1.5rem;
+  }
+
+  .update-score {
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    transform: translate(-50%, -50%);
+  }
+
+}

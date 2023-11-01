@@ -1,0 +1,49 @@
+img {
+    height: 48px;
+    aspect-ratio: auto 48 / 48;
+    width: 48px;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+}
+
+.setting {
+  cursor: pointer; /* Biến con trỏ chuột thành dấu chấm */
+  margin-bottom: 10px;
+  color: #ccc;
+
+}
+
+/* Định dạng label cho phần chọn */
+label {
+  display: block; /* Hiển thị label dưới dạng khối để nó xuất hiện trên một dòng riêng biệt */
+  font-weight: bold; /* Đậm cho văn bản label */
+  margin-bottom: 5px; /* Khoảng cách giữa label và select box */
+}
+
+/* Định dạng select box */
+select {
+  width: 100%; /* Độ rộng 100% của phần chọn */
+  padding: 8px; /* Khoảng cách bên trong phần chọn */
+  border: 1px solid #ccc; /* Viền xung quanh phần chọn */
+  border-radius: 5px; /* Đường viền cong */
+  background-color: #fff; /* Màu nền */
+}
+
+/* Định dạng option trong select box */
+select option {
+  font-size: 14px; /* Kích thước font cho option */
+}
+
+span {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+
+
+
+
+

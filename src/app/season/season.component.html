@@ -1,0 +1,26 @@
+<h2>Nhập tên mùa giải</h2>
+
+<form (submit)="addSeason()">
+  <input style="padding: 10px; width: 50%" type="text" name="nameSeason" required [(ngModel)]="newSeasonName"  >
+  <button style="padding: 10px; margin-left: 10px" class="btn btn-success" (click)="addSeason(); saveSeason()" type="submit"> Add</button>
+</form>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name Season</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let season of seasons;  ">
+      <th scope="row" ><span>{{ season.id}}</span></th>
+      <td>
+        {{season.name}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,58 @@
+
+<!--<div class="select-team " *ngIf="selectTeams.length == 1">
+  <img [src]="selectTeams[0]?.logo" alt=""/>
+  <div class="teamContent">
+    <span>{{ selectTeams[0].name }}</span>
+  </div>S
+</div>-->
+<div  *ngIf="logo || logo1" style="display: flex; justify-content: space-around; align-items: center" class="listLogo">
+  <div class="">
+    <img [src]="logo" alt=""/>
+  </div>
+  <div class="">
+    <img [src]="logo1" alt=""/>
+  </div>
+</div>
+<!--<div class="select-team" *ngIf="selectTeams.length == 2">
+  <div style="display: flex; justify-content: space-evenly; align-items: center;text-align: center" class="selected-teams">
+    <div class="team" >
+      <img [src]="selectTeams[0]?.logo" alt=""/>
+      <div class="teamContent">
+        <span>{{ selectTeams[0].name }}</span>
+      </div>
+    </div>
+    <span>VS</span>
+    <div class="team" >
+      <img [src]="selectTeams[1]?.logo" alt=""/>
+      <div class="teamContent">
+        <span>{{ selectTeams[1].name }}</span>
+      </div>
+    </div>
+  </div>
+</div>-->
+<!--<div class="setting" (click)="setting()">
+  <i class="fa-solid fa-filter" style="color: #bfbfbf;"></i>
+</div>
+<div *ngIf="show" class="selectLeague">
+  <label for="lang-select">Chọn giải đấu</label>
+  <select name="lang" id="lang-select" [(ngModel)]="selectLeague">
+    <option value="" selected disabled hidden>&#45;&#45;Chọn giải đấu&#45;&#45;</option>
+    <option value="Premier League">Premier League</option>
+    <option value="Bundesliga">Bundesliga</option>
+    <option value="La Liga">La Liga</option>
+    <option value="Serie A">Serie A</option>
+    <option value="Ligue 1">Ligue 1</option>
+  </select>
+</div>
+<div *ngIf="show" class="selectRank">
+  <label for="lang-select">Chọn chỉ số đội bóng</label>
+  <select name="lang" id="lang-select" [(ngModel)]="selectRank">
+    <option value="" selected disabled hidden>&#45;&#45;Chọn chỉ số&#45;&#45;</option>
+    <option value="5">5 sao</option>
+    <option value="4.5">4.5 sao</option>
+    <option value="4">4 sao</option>
+  </select>
+</div>-->
+
+
+

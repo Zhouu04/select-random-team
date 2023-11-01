@@ -1,0 +1,43 @@
+<div class="season">
+  <div class="season-content">
+    <!-- Example single danger button -->
+    <div class="btn-group">
+      <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Mùa giải
+      </button>
+      <ul class="dropdown-menu">
+        <li class="dropdown-item"  *ngFor="let season of seasons; let i = index" >
+          <div class="" (click)="changeSeason(season.id)" >
+            {{season.name}}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<h2>Bảng xếp hạng</h2>
+<table class="table  table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th>Xếp hạng</th>
+    <th>Tên người chơi</th>
+    <th>Thắng</th>
+    <th>Hòa</th>
+    <th>Thua</th>
+    <!--<th>Số bàn thắng</th>
+    <th>Số bàn thua</th>-->
+    <th>Điểm</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let team of standings; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ team.name }}</td>
+    <td>{{ team.wins }}</td>
+    <td>{{ team.draws }}</td>
+    <td>{{ team.losses }}</td>
+    <td>{{ team.points }}</td>
+  </tr>
+  </tbody>
+</table>

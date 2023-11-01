@@ -1,0 +1,25 @@
+th {
+  color: #70757a;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 12px;
+
+}
+
+td {
+  color: #202124;
+  font-size: 14px;
+}
+
+.season {
+  flex-wrap: wrap;
+  background-color: #f1f3f4;
+  line-height: normal;
+  padding: 0 8px;
+}
+
+.season-content {
+  flex-grow: 1;
+  -webkit-box-flex: 1;
+  border-bottom: 1px solid #dadce0;
+}
